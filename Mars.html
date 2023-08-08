@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="./img/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Mass Calculator</title>
+    <style>
+        #quote-section {
+            padding: 25px;
+            width: 383px;
+            border: 1px solid cyan;
+            color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            position: absolute;
+            left: 31%;
+            top: 0px;
+            border-radius: 5px;
+        }
+    
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            backdrop-filter: blur(15px);
+            background-image: url("https://wallpaperaccess.com/full/5927911.gif");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        .ui-box {
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid cyan;
+        }
+    
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        main {
+            text-align: center;
+        }
+    
+        label,
+        input,
+        button {
+            display: block;
+            margin: 10px auto;
+        }
+    
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: transparent;
+            color: white;
+            appearance: textfield;
+            /* Remove default arrows in Firefox */
+        }
+    
+        /* Custom arrows for number input in Chrome, Safari, and Edge */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+    
+        /* Custom font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+        button {
+            font-family: "Poppins", Arial, sans-serif;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: white;
+            border: 1px solid cyan;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+    
+    
+        }
+    
+        #back-btn {
+    
+            font-family: "Poppins", Arial, sans-serif;
+            padding: 10px 20px;
+            background-color: black;
+            color: cyan;
+            border: solid;
+            border-radius: 8px;
+            cursor: pointer;
+            align-self: auto;
+            margin-left: 36px;
+    
+        }
+    
+    
+        #wb {
+            margin-left: 20px;
+        }
+    
+        #bb {
+            margin-left: 20px;
+        }
+    
+        button:hover {
+            background-color: black;
+        }
+    
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+    
+        #planet-results {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+    
+        #planet-results li {
+            margin-bottom: 5px;
+        }
+    
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #222;
+            color: #fff;
+        }
+    
+        body.dark-theme .ui-box {
+            background-color: #333;
+        }
+    
+        body.dark-theme #quote-section {
+            background-color: #333;
+        }
+    
+        body.dark-theme input[type="number"] {
+            background-color: #444;
+            color: #fff;
+            border-color: #555;
+        }
+    
+        body.dark-theme button {
+            background-color: #e74c3c;
+        }
+    
+        body.dark-theme #new-quote-btn {
+            background-color: #e74c3c;
+        }
+    
+        body.dark-theme button:hover {
+            background-color: #ff6655;
+        }
+    
+        body.dark-theme #result {
+            color: #fff;
+        }
+    
+        body.dark-theme #planet-results li {
+            color: #ccc;
+        }
+    
+        #mydiv {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    
+        #mydiv img {
+            display: block;
+            cursor: pointer;
+            border: darkorange;
+            border-style: solid;
+        }
+    
+        #mydiv1 {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+    
+        #mydiv1 img {
+            cursor: pointer;
+            display: block;
+            border: rgb(14, 89, 91);
+            border-style: solid;
+        }
+    </style>
+    </head>
+    
+    <body>
+        <div id="mydiv">
+            <img onclick="goBack('https://www.isro.gov.in')" src="./img/isrologo.png" height="116" width="120">
+        </div>
+        <div id="mydiv1">
+            <img onclick="goBack('https://amd.sgvp.org')" src="./img/sgvplogo.png" height="116" width="150">
+        </div>
+        <div id="quote-section">
+            <h2 class="">Space Quote Section</h2>
+            <blockquote id="quote"></blockquote>
+        </div>
+    <div class="ui-box">
+
+        <header>
+            <h1>Mars Weight Calculator</h1>
+        </header>
+        <main>
+            <label for="earth-weight">Mass on Earth (kg)</label>
+            <input type="number" id="earth-weight" step="0.01" min="0">
+            <button id="calculate-btn">Calculate</button>
+
+            <div id="result">
+                <h2 id="wmass">Mass on Mars:</h2>
+                <ul id="planet-results"></ul>
+            </div>
+        </main>
+    </div>
+
+    <div class="theme-container">
+        <button class="dark-theme-btn" id="wb">Dark Theme</button>
+        <button class="light-theme-btn" id="bb">Light Theme</button>
+        <button id="back-btn" onclick="goBack('index.html')">Back</button>
+    </div>
+
+    <script>
+        document.getElementById("calculate-btn").addEventListener("click", function () {
+            const earthWeight = parseFloat(document.getElementById("earth-weight").value);
+
+            if (isNaN(earthWeight) || earthWeight <= 0) {
+                alert("Please enter a valid weight on Earth.");
+                return;
+            }
+
+            const planetResultsList = document.getElementById("planet-results");
+            planetResultsList.innerHTML = "";
+
+            const planetWeight = (earthWeight  * 3.721).toFixed(2);
+            const listItem = document.createElement("h2");
+            document.getElementById("wmass").innerHTML = `Mass on Mars : ${planetWeight} Newton`;
+
+            document.getElementById("result").style.display = "block";
+        });
+
+        document.querySelector(".dark-theme-btn").addEventListener("click", function () {
+            setTheme("dark");
+        });
+
+        document.querySelector(".light-theme-btn").addEventListener("click", function () {
+            setTheme("light");
+        });
+
+        function setTheme(theme) {
+            const body = document.body;
+            const themeClasses = ["dark-theme", "light-theme"];
+
+            body.classList.remove(...themeClasses);
+            body.classList.add(theme + "-theme");
+        }
+        function goBack(url) {
+            window.location.replace(url);
+        }
+        const quotes = [
+                "Mars, often called the Red Planet, has intrigued humans for centuries.",
+            "Evidence suggests that liquid water once flowed on Mars' surface, sparking discussions about the possibility of past life.",
+            "Mars' thin atmosphere and low temperatures make it a challenging environment for human exploration.",
+            "NASA's rovers, such as Curiosity and Perseverance, continue to explore Mars' surface and gather data.",
+            "Elon Musk's SpaceX has ambitious plans to establish a human settlement on Mars.",
+            "The Olympus Mons volcano on Mars is the largest volcano in the solar system.",
+            "Mars' two small moons, Phobos and Deimos, are irregularly shaped and likely captured asteroids.",
+            "Mars has the largest canyon in the solar system, Valles Marineris.",
+            "Mars has seasons similar to Earth due to its axial tilt.",
+            "Mars' rusty appearance is due to iron oxide, or rust, on its surface.",
+            "The thin atmosphere on Mars limits the amount of heat retained, leading to extreme temperature changes.",
+            "Mars has polar ice caps made of water and carbon dioxide.",
+            "Mars has a day length similar to Earth's, with a day lasting about 24.6 hours.",
+            "Mars' thin atmosphere allows for dust storms that can cover the entire planet.",
+            "The search for signs of life on Mars continues through various missions and research."
+            ];
+
+            const quoteElement = document.getElementById("quote");
+
+            function getRandomQuote() {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                return quotes[randomIndex];
+            }
+
+            function displayRandomQuote() {
+                const randomQuote = getRandomQuote();
+                quoteElement.textContent = randomQuote;
+            }
+
+            setInterval(displayRandomQuote, 7000); // Generate a new quote every 15 seconds
+
+            displayRandomQuote();
+    </script>
+</body>
+
+</html>

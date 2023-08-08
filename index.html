@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="./img/logo.png" type="image/x-icon" />
+    <title>Planet Page</title>
+    <style>
+        body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      backdrop-filter: blur(30px);
+      background-image: url("https://wallpaperaccess.com/full/5927911.gif");
+      background-position: center;
+      background-repeat: no-repeat;	
+      background-size: cover;
+      color: #333;
+      display:flow-root;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+        
+        .program-button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 10px auto;
+            background-color: black;
+            color: cyan;
+            font-size: 18px;
+            border: solid;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "Poppins", Arial, sans-serif;
+            transition: background-color 0.3s ease;
+      
+        }
+        #eh1 {
+            display: block;
+            text-align: center;
+            line-height: 150%;
+            font-size:60px;
+            color:gold;
+        }
+
+
+    </style>
+</head>
+<h1 id="eh1">Choose Planet</h1>
+
+
+<body>
+
+    <button class="program-button" onclick="redirectToProgram('mercury.html')">Mercury</button>
+    <button class="program-button" onclick="redirectToProgram('Venus.html')">Venus</button>
+    <button class="program-button" onclick="redirectToProgram('Earth.html')">Earth</button>
+    <button class="program-button" onclick="redirectToProgram('Mars.html')">Mars</button>
+    <button class="program-button" onclick="redirectToProgram('Jupiter.html')">Jupiter</button>
+    <button class="program-button" onclick="redirectToProgram('Saturn.html')">Saturn</button>
+    <button class="program-button" onclick="redirectToProgram('Uranus.html')">Uranus</button>
+    <button class="program-button" onclick="redirectToProgram('Neptune.html')">Neptune</button>
+
+    <script>
+        function redirectToProgram(programURL) {
+            window.location.href = programURL;
+        }
+    </script>
+</body>
+
+</html>

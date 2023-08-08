@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="download1.png" type="image/x-icon"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System Weight Calculator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      backdrop-filter: blur(15px);
+      background-image: url("https://wallpaperaccess.com/full/5927911.gif");
+      background-position: center;
+      background-repeat: no-repeat;	
+      background-size: cover;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .ui-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    label, input, button {
+      display: block;
+      margin: 10px auto;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #333;
+      appearance: textfield; /* Remove default arrows in Firefox */
+    }
+
+    /* Custom arrows for number input in Chrome, Safari, and Edge */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    /* Custom font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    button {
+      font-family: "Poppins", Arial, sans-serif;
+      padding: 10px 20px;
+      background-color: #3498db; /* Default button color (Blue) */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      
+    }
+    #wb{
+    margin-left:20px;
+    }
+    #bb{
+    margin-left:20px;
+    }
+
+    button:hover {
+      background-color: #3ca1db;
+    }
+
+    #result {
+      margin-top: 20px;
+      display: none;
+    }
+
+    #planet-results {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    #planet-results li {
+      margin-bottom: 5px;
+    }
+
+    /* Dark Theme */
+    body.dark-theme {
+      background-color: #222;
+      color: #fff;
+    }
+
+    body.dark-theme .ui-box {
+      background-color: #333;
+    }
+
+    body.dark-theme input[type="number"] {
+      background-color: #444;
+      color: #fff;
+      border-color: #555;
+    }
+
+    body.dark-theme button {
+      background-color: #e74c3c;
+    }
+
+    body.dark-theme button:hover {
+      background-color: #ff6655;
+    }
+
+    body.dark-theme #result {
+      color: #fff;
+    }
+
+    body.dark-theme #planet-results li {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="ui-box">
+    <header>
+      <h1>Solar System Weight Calculator</h1>
+    </header>
+    <main>
+      <label for="earth-weight">Weight on Earth (kg):</label>
+      <input type="number" id="earth-weight" step="0.01" min="0">
+      <button id="calculate-btn">Calculate</button>
+
+      <div id="result">
+        <h2>Weight on other planets:</h2>
+        <ul id="planet-results"></ul>
+      </div>
+    </main>
+  </div>
+
+  <div class="theme-container">
+    <button class="dark-theme-btn" id="wb">Dark Theme</button>
+    <button class="light-theme-btn" id = "bb">Light Theme</button>
+  </div>
+
+  <script>
+    document.getElementById("calculate-btn").addEventListener("click", function() {
+      const earthWeight = parseFloat(document.getElementById("earth-weight").value);
+
+      if (isNaN(earthWeight) || earthWeight <= 0) {
+        alert("Please enter a valid weight on Earth.");
+        return;
+      }
+
+      const planetGravitationalFactors = {
+        Mercury: 3.7,
+        Venus: 8.87,
+        Earth: 9.81,
+        Mars: 3.721,
+        Jupiter: 24.79,
+        Saturn: 10.44,
+        Uranus: 8.69,
+        Neptune: 11.15,
+      };
+
+      const planetResultsList = document.getElementById("planet-results");
+      planetResultsList.innerHTML = "";
+
+      for (const planet in planetGravitationalFactors) {
+        if (planet !== "Earth") {
+          const planetWeight = (earthWeight / 9.81 * planetGravitationalFactors[planet]).toFixed(2);
+          const listItem = document.createElement("li");
+          listItem.textContent = `${planet} weight: ${planetWeight} kg`;
+          planetResultsList.appendChild(listItem);
+        }
+      }
+
+      document.getElementById("result").style.display = "block";
+    });
+
+    document.querySelector(".dark-theme-btn").addEventListener("click", function() {
+      setTheme("dark");
+    });
+
+    document.querySelector(".light-theme-btn").addEventListener("click", function() {
+      setTheme("light");
+    });
+
+    function setTheme(theme) {
+      const body = document.body;
+      const themeClasses = ["default-theme", "dark-theme", "light-theme"];
+
+      body.classList.remove(...themeClasses);
+      body.classList.add(theme + "-theme");
+    }
+  </script>
+</body>
+</html>
